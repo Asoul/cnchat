@@ -1,6 +1,6 @@
 var express = require('express');
 var app     = express();
-var port    = process.env.PORT || 80;
+var port    = 8002;
 
 var http    = require('http');
 var server  = http.createServer(app);
@@ -77,6 +77,7 @@ app.get('/home', function(req, res){
 app.get('/upload', function(req, res){
   if (!req.session.token) res.redirect("/");
   res.render('home');
+  console.log(req.headers)
 });
 
 /* File Transfer */
@@ -135,7 +136,8 @@ app.post('/info', function(req, res) {
 
 app.post('/upload', function(req, res) {// I dont know why do there
   if(!req.session.token) res.send("error");
-  console.log("req.files => "+req.files);
+  console.log(req.headers)
+  // console.log("req.files => "+req.files);
   res.redirect("/");
 });
 
